@@ -1,0 +1,95 @@
+package rs.ac.bg.fon.ai.projekat.domen;
+
+import java.util.Date;
+
+public class Dan {
+	private Date datum;
+	private double trenutna;
+	private double max;
+	private double min;
+	
+	public Dan() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Dan(Date datum, double trenutna, double max, double min) {
+		super();
+		this.datum = datum;
+		this.trenutna = trenutna;
+		this.max = max;
+		this.min = min;
+	}
+
+	public Date getDatum() {
+		return datum;
+	}
+
+	public void setDatum(Date datum) {
+		this.datum = datum;
+	}
+
+	public double getTrenutna() {
+		return trenutna;
+	}
+
+	public void setTrenutna(int trenutna) {
+		this.trenutna = trenutna;
+	}
+
+	public double getMax() {
+		return max;
+	}
+
+	public void setMax(int max) {
+		this.max = max;
+	}
+
+	public double getMin() {
+		return min;
+	}
+
+	public void setMin(int min) {
+		this.min = min;
+	}
+
+	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((datum == null) ? 0 : datum.hashCode());
+		long temp;
+		temp = Double.doubleToLongBits(max);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(min);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(trenutna);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Dan other = (Dan) obj;
+		if (datum == null) {
+			if (other.datum != null)
+				return false;
+		} else if (!datum.equals(other.datum))
+			return false;
+		if (Double.doubleToLongBits(max) != Double.doubleToLongBits(other.max))
+			return false;
+		if (Double.doubleToLongBits(min) != Double.doubleToLongBits(other.min))
+			return false;
+		if (Double.doubleToLongBits(trenutna) != Double.doubleToLongBits(other.trenutna))
+			return false;
+		return true;
+	}
+	
+}

@@ -6,7 +6,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import rs.ac.bg.fon.ai.projekat.controler.Controler;
+import rs.ac.bg.fon.ai.projekat.domen.Grad;
+import rs.ac.bg.fon.ai.projekat.sesson.Sesson;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -16,6 +22,8 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.Rectangle;
 import java.awt.Insets;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class GlavniGUI extends JFrame {
 
@@ -64,9 +72,20 @@ public class GlavniGUI extends JFrame {
 		
 		JComboBox cmbGrad = new JComboBox();
 		cmbGrad.setPreferredSize(new Dimension(100, 20));
+		popuniCmbGrad(cmbGrad);
 		panel.add(cmbGrad);
 		
 		JButton btnUcitaj = new JButton("Ucitaj");
+		btnUcitaj.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Grad grad = (Grad) cmbGrad.getSelectedItem();
+				if(Controler.getInstance().ucitajPrognozu(grad)){
+					JOptionPane.showMessageDialog(null, "Uspesno ucitana prognoza");
+				}else{
+					JOptionPane.showMessageDialog(null, "Doslo je do greske prilikom ucitavanja prognoze");
+				}
+			}
+		});
 		btnUcitaj.setAlignmentX(Component.CENTER_ALIGNMENT);
 		btnUcitaj.setHorizontalTextPosition(SwingConstants.CENTER);
 		panel.add(btnUcitaj);
@@ -91,5 +110,12 @@ public class GlavniGUI extends JFrame {
 		JPanel narednihDana = new JPanel();
 		narednihDana.setBounds(10, 264, 748, 183);
 		panel_1.add(narednihDana);
+	}
+
+	private void popuniCmbGrad(JComboBox cmbGrad) {		
+		for (Grad grad : Sesson.getInstance().getGradovi()) {
+			cmbGrad.addItem(grad);
+		}
+		
 	}
 }

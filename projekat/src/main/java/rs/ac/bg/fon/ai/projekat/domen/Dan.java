@@ -7,6 +7,7 @@ public class Dan {
 	private double trenutna;
 	private double max;
 	private double min;
+	private String stanje;
 	
 	public Dan() {
 		// TODO Auto-generated constructor stub
@@ -53,6 +54,14 @@ public class Dan {
 	}
 
 	
+
+	public String getStanje() {
+		return stanje;
+	}
+
+	public void setStanje(String stanje) {
+		this.stanje = stanje;
+	}
 
 	@Override
 	public int hashCode() {

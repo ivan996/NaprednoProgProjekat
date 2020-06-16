@@ -24,11 +24,15 @@ import java.awt.Rectangle;
 import java.awt.Insets;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+/**
+ * 
+ * @author Ivan Stanimirovic
+ *
+ */
 public class GlavniGUI extends JFrame {
 
 	private JPanel contentPane;
-
+	private JLabel lblSlika;
 	/**
 	 * Launch the application.
 	 */
@@ -73,22 +77,7 @@ public class GlavniGUI extends JFrame {
 		JComboBox cmbGrad = new JComboBox();
 		cmbGrad.setPreferredSize(new Dimension(100, 20));
 		popuniCmbGrad(cmbGrad);
-		panel.add(cmbGrad);
-		
-		JButton btnUcitaj = new JButton("Ucitaj");
-		btnUcitaj.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				Grad grad = (Grad) cmbGrad.getSelectedItem();
-				if(Controler.getInstance().ucitajPrognozu(grad)){
-					JOptionPane.showMessageDialog(null, "Uspesno ucitana prognoza");
-				}else{
-					JOptionPane.showMessageDialog(null, "Doslo je do greske prilikom ucitavanja prognoze");
-				}
-			}
-		});
-		btnUcitaj.setAlignmentX(Component.CENTER_ALIGNMENT);
-		btnUcitaj.setHorizontalTextPosition(SwingConstants.CENTER);
-		panel.add(btnUcitaj);
+		panel.add(cmbGrad);	
 		
 		JPanel panel_1 = new JPanel();
 		contentPane.add(panel_1, BorderLayout.CENTER);
@@ -103,9 +92,30 @@ public class GlavniGUI extends JFrame {
 		panel_1.add(slikaTrenutna);
 		slikaTrenutna.setLayout(null);
 		
-		JLabel lblSlika = new JLabel("New label");
+		lblSlika = new JLabel("Slika");
 		lblSlika.setBounds(0, 0, 244, 156);
 		slikaTrenutna.add(lblSlika);
+		
+		JButton btnUcitaj = new JButton("Ucitaj");
+		btnUcitaj.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				Grad grad = (Grad) cmbGrad.getSelectedItem();
+				if(Controler.getInstance().ucitajPrognozu(grad)){
+					JOptionPane.showMessageDialog(null, "Uspesno ucitana prognoza");
+					// popuniti u GUI-u					
+					popuniPrognozu();
+				}else{
+					JOptionPane.showMessageDialog(null, "Doslo je do greske prilikom ucitavanja prognoze");
+				}
+			}
+		});
+		btnUcitaj.setAlignmentX(Component.CENTER_ALIGNMENT);
+		btnUcitaj.setHorizontalTextPosition(SwingConstants.CENTER);
+		panel.add(btnUcitaj);
+		
+		
+		
+		
 		
 		JPanel narednihDana = new JPanel();
 		narednihDana.setBounds(10, 264, 748, 183);
@@ -115,7 +125,10 @@ public class GlavniGUI extends JFrame {
 	private void popuniCmbGrad(JComboBox cmbGrad) {		
 		for (Grad grad : Sesson.getInstance().getGradovi()) {
 			cmbGrad.addItem(grad);
-		}
-		
+		}		
+	}
+	private void popuniPrognozu(){
+		lblSlika.setText("");
+		lblSlika.setIcon(Controler.getInstance().vratiSliku(Sesson.getInstance().getTrenutno().getStanje()));
 	}
 }

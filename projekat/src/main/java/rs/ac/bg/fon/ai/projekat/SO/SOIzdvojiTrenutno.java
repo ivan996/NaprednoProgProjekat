@@ -2,6 +2,7 @@ package rs.ac.bg.fon.ai.projekat.SO;
 
 import java.util.Date;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import rs.ac.bg.fon.ai.projekat.domen.Dan;
@@ -14,7 +15,9 @@ public class SOIzdvojiTrenutno {
 		long time = current.getLong("dt");
 		double temp = current.getDouble("temp");
 		Dan dan = new Dan(new Date(time), temp, 0, 0);
-		
+		JSONArray weather = current.getJSONArray("weather");
+		JSONObject obj = weather.getJSONObject(0);
+		dan.setStanje(obj.getString("main"));
 		return dan;
 	}
 

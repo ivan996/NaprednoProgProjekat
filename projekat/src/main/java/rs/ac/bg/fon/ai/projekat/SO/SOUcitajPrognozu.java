@@ -13,7 +13,7 @@ import rs.ac.bg.fon.ai.projekat.domen.Grad;
 public class SOUcitajPrognozu {
 
 	public JSONObject ucitajPrognozu(Grad grad) throws IOException{
-		String url = "https://api.openweathermap.org/data/2.5/onecall?lat="+ grad.getLat() +"&lon="+ grad.getLon() +"&&appid=1814c32996f523224b9ad9f8930e305f&units=metric";
+		String url = "https://api.openweathermap.org/data/2.5/onecall?lat="+ grad.getLat() +"&lon="+ grad.getLon() +"&appid=1814c32996f523224b9ad9f8930e305f&units=metric";
 		URL obj;
 		obj = new URL(url);
 		HttpURLConnection con = (HttpURLConnection) obj.openConnection();
@@ -28,7 +28,7 @@ public class SOUcitajPrognozu {
 			response.append(inputLine);
 		}
 		
-		System.out.println(response.toString());
+		//System.out.println(response.toString());
 		
 		JSONObject json = new JSONObject(response.toString());	
 		

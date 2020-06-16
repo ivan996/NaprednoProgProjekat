@@ -1,11 +1,15 @@
 package rs.ac.bg.fon.ai.projekat.controler;
 
+import java.awt.Image;
 import java.io.IOException;
 import java.util.Date;
 import java.util.LinkedList;
 
+import javax.swing.ImageIcon;
+
 import org.json.JSONObject;
 
+import rs.ac.bg.fon.ai.projekat.SO.SODodajSliku;
 import rs.ac.bg.fon.ai.projekat.SO.SOIzdvojiPoSatima;
 import rs.ac.bg.fon.ai.projekat.SO.SOIzdvojiTrenutno;
 import rs.ac.bg.fon.ai.projekat.SO.SOIzdvojiZaParDana;
@@ -48,6 +52,9 @@ public class Controler {
 	}
 	public LinkedList<Sat> izdvojiPoSatima(JSONObject json){
 		return new SOIzdvojiPoSatima().izdvojiPoSatima(json);
+	}
+	public ImageIcon vratiSliku(String naziv){	
+		return new SODodajSliku().vratiSliku(naziv);		
 	}
 	
 	

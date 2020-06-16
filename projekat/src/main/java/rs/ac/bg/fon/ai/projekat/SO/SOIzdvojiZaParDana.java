@@ -20,6 +20,9 @@ public class SOIzdvojiZaParDana {
 			double min = temp.getDouble("min");
 			double max = temp.getDouble("max");
 			Dan d = new Dan(new Date(date), 0, max, min);
+			JSONArray weather = obj.getJSONArray("weather");
+			JSONObject main = weather.getJSONObject(0);
+			d.setStanje(main.getString("main"));
 			dan.add(d);
 		}
 		

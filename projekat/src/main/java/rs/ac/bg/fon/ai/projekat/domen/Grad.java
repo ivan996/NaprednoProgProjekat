@@ -20,7 +20,8 @@ public class Grad {
 	public String getNazivGrada() {
 		return nazivGrada;
 	}
-	public void setNazivGrada(String nazivGrada) {
+	public void setNazivGrada(String nazivGrada) throws Exception {
+		if(nazivGrada == null || nazivGrada == "") throw new Exception("Grad mora da postoji");
 		this.nazivGrada = nazivGrada;
 	}
 	public double getLon() {

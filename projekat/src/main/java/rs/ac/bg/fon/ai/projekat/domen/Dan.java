@@ -37,7 +37,8 @@ public class Dan {
 		return datum;
 	}
 
-	public void setDatum(Date datum) {
+	public void setDatum(Date datum) throws Exception {
+		if(datum==null) throw new Exception("Datum mora da postoji");
 		this.datum = datum;
 	}
 
@@ -71,7 +72,8 @@ public class Dan {
 		return stanje;
 	}
 
-	public void setStanje(String stanje) {
+	public void setStanje(String stanje) throws Exception {
+		if(stanje==null) throw new Exception("Datum mora da postoji");
 		this.stanje = stanje;
 	}
 

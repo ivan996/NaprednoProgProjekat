@@ -20,7 +20,8 @@ public class Sat {
 		return datum;
 	}
 
-	public void setDatum(Date datum) {
+	public void setDatum(Date datum) throws Exception {
+		if(datum == null) throw new Exception("Datum mora da postoji");
 		this.datum = datum;
 	}
 

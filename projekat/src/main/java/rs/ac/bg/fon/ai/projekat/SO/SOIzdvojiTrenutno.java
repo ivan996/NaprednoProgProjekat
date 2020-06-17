@@ -3,6 +3,7 @@ package rs.ac.bg.fon.ai.projekat.SO;
 import java.util.Date;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import rs.ac.bg.fon.ai.projekat.domen.Dan;
@@ -18,7 +19,10 @@ public class SOIzdvojiTrenutno {
 		Dan dan = new Dan(new Date(time), temp, 0, 0,wind);
 		JSONArray weather = current.getJSONArray("weather");
 		JSONObject obj = weather.getJSONObject(0);
-		dan.setStanje(obj.getString("main"));
+		try {
+			dan.setStanje(obj.getString("main"));
+		}catch (Exception e) {			
+		}
 		return dan;
 	}
 

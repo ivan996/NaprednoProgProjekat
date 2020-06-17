@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.LinkedList;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import rs.ac.bg.fon.ai.projekat.domen.Dan;
@@ -22,7 +23,10 @@ public class SOIzdvojiZaParDana {
 			Dan d = new Dan(new Date(date), 0, max, min,0);
 			JSONArray weather = obj.getJSONArray("weather");
 			JSONObject main = weather.getJSONObject(0);
-			d.setStanje(main.getString("main"));
+			try {
+				d.setStanje(main.getString("main"));
+			} catch (Exception e) {				
+			}
 			dan.add(d);
 		}
 		

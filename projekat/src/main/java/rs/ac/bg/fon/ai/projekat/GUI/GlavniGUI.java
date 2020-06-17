@@ -269,7 +269,7 @@ public class GlavniGUI extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				Grad grad = (Grad) cmbGrad.getSelectedItem();
 				if(Controler.getInstance().ucitajPrognozu(grad)){
-					JOptionPane.showMessageDialog(null, "Uspesno ucitana prognoza");
+					//JOptionPane.showMessageDialog(null, "Uspesno ucitana prognoza");
 					// popuniti u GUI-u					
 					popuniPrognozu();
 					popuniZaViseDana();

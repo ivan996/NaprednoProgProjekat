@@ -15,7 +15,7 @@ public class SOIzdvojiPoSatima {
 		JSONArray sati = json.getJSONArray("hourly");
 		for( int i = 0; i< sati.length(); i++){
 			JSONObject obj = sati.getJSONObject(i);
-			long date = obj.getLong("dt");
+			long date = obj.getLong("dt") * 1000;
 			double temp = obj.getDouble("temp");
 			Sat st = new Sat(new Date(date), temp);
 			casovi.add(st);

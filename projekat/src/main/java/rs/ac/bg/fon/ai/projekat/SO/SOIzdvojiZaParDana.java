@@ -15,11 +15,11 @@ public class SOIzdvojiZaParDana {
 		JSONArray dani = json.getJSONArray("daily");
 		for( int i = 0; i< dani.length(); i++){			
 			JSONObject obj = dani.getJSONObject(i);
-			long date = obj.getLong("dt");
+			long date = obj.getLong("dt") * 1000 ;
 			JSONObject temp = obj.getJSONObject("temp");
 			double min = temp.getDouble("min");
 			double max = temp.getDouble("max");
-			Dan d = new Dan(new Date(date), 0, max, min);
+			Dan d = new Dan(new Date(date), 0, max, min,0);
 			JSONArray weather = obj.getJSONArray("weather");
 			JSONObject main = weather.getJSONObject(0);
 			d.setStanje(main.getString("main"));

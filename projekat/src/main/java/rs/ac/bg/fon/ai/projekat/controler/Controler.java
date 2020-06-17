@@ -9,6 +9,7 @@ import javax.swing.ImageIcon;
 
 import org.json.JSONObject;
 
+import rs.ac.bg.fon.ai.projekat.SO.SODodajMaluSliku;
 import rs.ac.bg.fon.ai.projekat.SO.SODodajSliku;
 import rs.ac.bg.fon.ai.projekat.SO.SOIzdvojiPoSatima;
 import rs.ac.bg.fon.ai.projekat.SO.SOIzdvojiTrenutno;
@@ -55,6 +56,9 @@ public class Controler {
 	}
 	public ImageIcon vratiSliku(String naziv){	
 		return new SODodajSliku().vratiSliku(naziv);		
+	}
+	public ImageIcon vratiMaluSliku(String naziv){
+		return new SODodajMaluSliku().vratiSliku(naziv);		
 	}
 	
 	

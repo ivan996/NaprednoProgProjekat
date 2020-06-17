@@ -8,17 +8,29 @@ public class Dan {
 	private double max;
 	private double min;
 	private String stanje;
+	private double vetar;
 	
 	public Dan() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Dan(Date datum, double trenutna, double max, double min) {
+	public Dan(Date datum, double trenutna, double max, double min,double vetar) {
 		super();
 		this.datum = datum;
 		this.trenutna = trenutna;
 		this.max = max;
 		this.min = min;
+		this.vetar = vetar;
+	}
+
+	
+	
+	public double getVetar() {
+		return vetar;
+	}
+
+	public void setVetar(double vetar) {
+		this.vetar = vetar;
 	}
 
 	public Date getDatum() {
@@ -73,7 +85,10 @@ public class Dan {
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(min);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
+		result = prime * result + ((stanje == null) ? 0 : stanje.hashCode());
 		temp = Double.doubleToLongBits(trenutna);
+		result = prime * result + (int) (temp ^ (temp >>> 32));
+		temp = Double.doubleToLongBits(vetar);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
@@ -96,9 +111,18 @@ public class Dan {
 			return false;
 		if (Double.doubleToLongBits(min) != Double.doubleToLongBits(other.min))
 			return false;
+		if (stanje == null) {
+			if (other.stanje != null)
+				return false;
+		} else if (!stanje.equals(other.stanje))
+			return false;
 		if (Double.doubleToLongBits(trenutna) != Double.doubleToLongBits(other.trenutna))
+			return false;
+		if (Double.doubleToLongBits(vetar) != Double.doubleToLongBits(other.vetar))
 			return false;
 		return true;
 	}
+
+	
 	
 }

@@ -35,7 +35,7 @@ public class Grad {
 		return lat;
 	}
 	public void setLat(double lat) throws Exception {
-		if(lon> 90 || lon < (-90)) throw new Exception("Los Lat");
+		if(lat> 90 || lat < (-90)) throw new Exception("Los Lat");
 		this.lat = lat;
 	}
 	@Override

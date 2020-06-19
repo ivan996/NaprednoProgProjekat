@@ -73,7 +73,7 @@ public class Dan {
 	}
 
 	public void setStanje(String stanje) throws Exception {
-		if(stanje==null) throw new Exception("Datum mora da postoji");
+		if(stanje==null) throw new Exception("Stanje mora da postoji");
 		this.stanje = stanje;
 	}
 

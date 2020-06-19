@@ -24,6 +24,7 @@ public class SOIzdvojiTrenutno {
 		}catch (Exception e) {			
 		}
 		return dan;
+		
 	}
 
 }

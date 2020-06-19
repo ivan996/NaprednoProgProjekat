@@ -7,9 +7,17 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import rs.ac.bg.fon.ai.projekat.domen.Sat;
-
+/**
+ * Klasa sluzi za vrsenje sistemske operacije
+ * @author Ivan Stanimirovic
+ *
+ */
 public class SOIzdvojiPoSatima {
-
+	/**
+	 * Metoda izdvojiPoSatima na osnovu JSON objekta izdvaja prognozu po satima i vraca kao listu
+	 * @param json predstavlja JSON objekat sa ucitanom prognozom
+	 * @return vraca listu sa prognozom po satima
+	 */
 	public LinkedList<Sat> izdvojiPoSatima(JSONObject json){
 		LinkedList<Sat> casovi = new LinkedList<Sat>();
 		JSONArray sati = json.getJSONArray("hourly");

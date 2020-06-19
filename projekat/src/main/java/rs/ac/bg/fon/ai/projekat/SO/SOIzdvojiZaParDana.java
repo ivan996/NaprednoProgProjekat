@@ -8,9 +8,17 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import rs.ac.bg.fon.ai.projekat.domen.Dan;
-
+/**
+ * Klasa sluzi za vrsenje sistemske operacije
+ * @author Ivan Stanimirovic
+ *
+ */
 public class SOIzdvojiZaParDana {
-	
+	/**
+	 * Metoda izdvojiZaParDana na osnovu JSON objekta izdvaja prognozu za par dana i vraca kao listu
+	 * @param json predstavlja ucitanu prognozu u obliku JSON
+	 * @return vraca listu sa prognozom za narednih 7 dana
+	 */
 	public LinkedList<Dan> izdvojiZaParDana(JSONObject json){
 		LinkedList<Dan> dan = new LinkedList<Dan>();
 		JSONArray dani = json.getJSONArray("daily");

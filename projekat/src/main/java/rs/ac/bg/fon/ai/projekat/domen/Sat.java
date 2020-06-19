@@ -2,6 +2,11 @@ package rs.ac.bg.fon.ai.projekat.domen;
 
 import java.util.Date;
 
+/**
+ * Domenska klasa u kojoj se cuvaju podaci o temeperaturi u satu
+ * @author Ivan Stanimirovic
+ *
+ */
 public class Sat {
 	private Date datum;
 	private double temp;
@@ -15,20 +20,36 @@ public class Sat {
 		this.datum = datum;
 		this.temp = temp;
 	}
-
+	/**
+	 * * Metoda getDatum vraca vrednost atributa datum
+	 * @return vrednost atributa datum
+	 */
 	public Date getDatum() {
 		return datum;
 	}
-
+	/**
+	 * Postavlja vrednost atributa datum
+	 * @param datum predstavlja novu vrednost datuma koji ne sme da bude: 
+	 * <ul>
+	 * <li>null</li>
+	 * </ul>
+	 * @throws Exception ako parametar ne odgovara zadatim uslovima
+	 */
 	public void setDatum(Date datum) throws Exception {
 		if(datum == null) throw new Exception("Datum mora da postoji");
 		this.datum = datum;
 	}
-
+	/**
+	 * * Metoda getTemp vraca vrednost atributa temp koji predstavlja temperaturu u tom satu
+	 * @return vrednost atributa temp
+	 */
 	public double getTemp() {
 		return temp;
 	}
-
+	/**
+	 * Metoda setTemp postavlja vrednost parametra temp na novu (proslednjenu) vrednost
+	 * @param temp predstavlja novu temeperaturu
+	 */
 	public void setTemp(int temp) {
 		this.temp = temp;
 	}

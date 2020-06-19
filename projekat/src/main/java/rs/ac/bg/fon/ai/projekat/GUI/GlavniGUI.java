@@ -36,30 +36,52 @@ import java.awt.Color;
 /**
  * 
  * @author Ivan Stanimirovic
- *
+ * @version 1.0
+ *  
  */
 public class GlavniGUI extends JFrame {
 
+	/**
+	 * Atriput contentPane je glavni frame u GUI-u na kome se sve nalazi
+	 */
 	private JPanel contentPane;
+	/**
+	 * Atriput lblSlika je tipa JLabel, u njoj se smesta slika trenutne prognoze
+	 */
 	private JLabel lblSlika;
+	/**
+	 * Atribut cmbGrad je tipa JComboBox, iz njega se bira grad za prognozu
+	 */
 	private JComboBox cmbGrad;
+	/**
+	 * Atribut lblGrad sadrzi naziv grana u trenutnoj prognozi
+	 */
 	private JLabel lblGrad;
-	private JLabel lblStepeni;
+	/**
+	 * Atribut lblStepeni sadrzi trenutnu temperaturu
+	 */
+	private JLabel lblStepeni;	
 	private JLabel lblVetar;
 	private JPanel krozSate;
+	/**
+	 * Atibut lblVetar sadrzi trenutniu jacinu vetra
+	 */
 	private JLabel lblKmh;
+	//Narednih pet JLabel polja sadrze sate za prognozu kroz sate
 	private JLabel lblPrva;
 	private JLabel lblDruga;
 	private JLabel lblTreca;
 	private JLabel lblCetvrta;
 	private JLabel lblPeta;
 	private JLabel lblSesta;
+	//Narednih pet JLabel polja sadrze temepraturu za prognozu kroz sate
 	private JLabel lblPrva1;
 	private JLabel lblDruga1;
 	private JLabel lblTreca1;
 	private JLabel lblCetvrta1;
 	private JLabel lblPeta1;
 	private JLabel lblSesta1;
+	//Narednih 7 labela sadrze ikonice za 7 dana u prognozi za naradne dane
 	private JLabel lblSlika1;
 	private JLabel lblSlika2;
 	private JLabel lblSlika3;
@@ -68,6 +90,7 @@ public class GlavniGUI extends JFrame {
 	private JLabel lblSlika6;
 	private JLabel lblSlika7;
 	private JLabel lblSlika8;
+	//Narednih 7 labela sadrze datume za 7 dana u prognozi za naradne dane
 	private JLabel lblDatum1;
 	private JLabel lblDatum2;
 	private JLabel lblDatum3;
@@ -76,6 +99,7 @@ public class GlavniGUI extends JFrame {
 	private JLabel lblDatum6;
 	private JLabel lblDatum7;
 	private JLabel lblDatum8;
+	//Narednih 7 labela sadrze maksimalnu temperaturu za 7 dana u prognozi za naradne dane
 	private JLabel lblTemp1;
 	private JLabel lblTemp2;
 	private JLabel lblTemp3;
@@ -84,6 +108,7 @@ public class GlavniGUI extends JFrame {
 	private JLabel lblTemp6;
 	private JLabel lblTemp7;
 	private JLabel lblTemp8;
+	//Narednih 7 labela sadrze minimalnu temperaturu za 7 dana u prognozi za naradne dane
 	private JLabel lblMin1;
 	private JLabel lblMin2;
 	private JLabel lblMin3;
@@ -103,7 +128,7 @@ public class GlavniGUI extends JFrame {
 	private JLabel lblPrognozaPoDanima;
 	private JLabel lblTrenutnaPrognoza;
 	/**
-	 * Launch the application.
+	 * Main metoda za pokretanje cele aplikacije
 	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -119,7 +144,7 @@ public class GlavniGUI extends JFrame {
 	}
 
 	/**
-	 * Create the frame.
+	 * Konstruktor u kome se kreira ceo prozor sa svim komponentama.
 	 */
 	public GlavniGUI() {
 		setResizable(false);
@@ -266,12 +291,16 @@ public class GlavniGUI extends JFrame {
 		
 		JButton btnUcitaj = new JButton("Ucitaj");
 		btnUcitaj.addActionListener(new ActionListener() {
+			//Metoda se izvrsava kada se klikne na dugme "Ucitaj"
 			public void actionPerformed(ActionEvent arg0) {
 				Grad grad = (Grad) cmbGrad.getSelectedItem();
-				if(Controler.getInstance().ucitajPrognozu(grad)){				
+				//Ako je ucitan grad dobar vraca true ako ne onda false
+				if(Controler.getInstance().ucitajPrognozu(grad)){
+					//Popunjavamo Formu sa podacima
 					popuniPrognozu();
 					popuniZaViseDana();
 				}else{
+					//Ako se dobije false u uslovu znaci da je doslo do greske i onda prikazujemo obavestenje
 					JOptionPane.showMessageDialog(null, "Doslo je do greske prilikom ucitavanja prognoze");
 				}
 			}
@@ -509,25 +538,33 @@ public class GlavniGUI extends JFrame {
 		lblDobroDosli.setBounds(0, 0, 778, 468);
 		panel_1.add(lblDobroDosli);
 	}
-
+	/**
+	 * Metoda popuniCmbGrad popunjava comboBox sa podacima iz liste koja se nalazi u objektu klase Sesson
+	 */
 	private void popuniCmbGrad() {		
 		for (Grad grad : Sesson.getInstance().getGradovi()) {
 			cmbGrad.addItem(grad);
 		}		
 	}
+	/**
+	 * Metoda popuniPrognozu() popunjava trenutnu prognozu na osnovu objekta klase Sesson
+	 */
 	private void popuniPrognozu(){
 		lblSlika.setText("");
+		//postavlja se slika na osnovu podataka koji su uzitani iz objekta klase Sesson
 		lblSlika.setIcon(Controler.getInstance().vratiSliku(Sesson.getInstance().getTrenutno().getStanje()));
 		Grad gr = (Grad)cmbGrad.getSelectedItem();
 		lblGrad.setText(gr.getNazivGrada());
 		lblStepeni.setText(Sesson.getInstance().getTrenutno().getTrenutna() + "\u00B0C");
 		lblKmh.setText(Sesson.getInstance().getTrenutno().getVetar() + " m/s");
 		LinkedList<Sat> poSatima = Sesson.getInstance().getPoSatima();
+		//Prolazi se kroz listu poSatima da bi se popunila prognoza po satima
 		for(int i=0; i<poSatima.size(); i++){						
 			Date datum = poSatima.get(i).getDatum();
 			SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");			
 			String vreme = sdf.format(datum);
-			double temp = poSatima.get(i).getTemp();		
+			double temp = poSatima.get(i).getTemp();
+			//u zavisnosti koji je sat ona popunjava drugacije Labele
 			switch (i) {
 			case 0:
 				lblPrva.setText(vreme);
@@ -562,6 +599,7 @@ public class GlavniGUI extends JFrame {
 				break;
 			}
 		}
+		//Uklanja se labela  dobrodoslice i postavlja se vidljivost panela na true
 		lblDobroDosli.setVisible(false);
 		slikaTrenutna.setVisible(true);
 		trenutnaTemp.setVisible(true);
@@ -612,16 +650,21 @@ public class GlavniGUI extends JFrame {
 		}
 		return lblKmh;
 	}
-	
+	/**
+	 * Metoda popuniZaViseDana popunjava panel u kome se nalazi prognoza za narednih 7 dana
+	 */
 	private void popuniZaViseDana(){
+		//ucitavamo listu poDanima iz objekta klase Sesson koji sadrzi prognozu za narednih 7 dana
 		LinkedList<Dan> poDanima = Sesson.getInstance().getPoDanima();
-		for(int i=0; i<poDanima.size(); i++){						
+		//prolazimo kroz listu poDanima da bi popunili prognozu za naredne dane
+		for(int i=0; i<poDanima.size(); i++){	
 			Date datum = poDanima.get(i).getDatum();
 			SimpleDateFormat sdf = new SimpleDateFormat("dd.MM");			
 			String vreme = sdf.format(datum);
 			double max = poDanima.get(i).getMax();
 			double min = poDanima.get(i).getMin();
 			ImageIcon icon = Controler.getInstance().vratiMaluSliku(poDanima.get(i).getStanje());
+			//zavisno od mesta u listi popunjavaju se drugacije labele
 			switch (i) {
 			case 0:
 				lblSlika1.setIcon(icon);
@@ -688,6 +731,7 @@ public class GlavniGUI extends JFrame {
 				break;
 			}
 		}
+		//postavlja se vidljivost panela na true
 		narednihDana.setVisible(true);
 	}
 }

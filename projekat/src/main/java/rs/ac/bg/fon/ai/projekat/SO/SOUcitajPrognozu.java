@@ -9,9 +9,18 @@ import java.net.URL;
 import org.json.JSONObject;
 
 import rs.ac.bg.fon.ai.projekat.domen.Grad;
-
+/**
+ * Klasa sluzi za vrsenje sistemske operacije
+ * @author Ivan Stanimirovic
+ *
+ */
 public class SOUcitajPrognozu {
-
+	/**
+	 * Metoda ucitajPrognozu konektuje se na API, cita JSON i vraca prognozu
+	 * @param grad predstavlja naziv grada za koji nam je potreba prognoza
+	 * @return vraca instancu klase JSONObject koja predstavlja prognozu
+	 * @throws IOException u slucaju da dodje do greske baca se IOException
+	 */
 	public JSONObject ucitajPrognozu(Grad grad) throws IOException{
 		String url = "https://api.openweathermap.org/data/2.5/onecall?lat="+ grad.getLat() +"&lon="+ grad.getLon() +"&appid=1814c32996f523224b9ad9f8930e305f&units=metric";
 		URL obj;

@@ -3,9 +3,17 @@ package rs.ac.bg.fon.ai.projekat.SO;
 import java.awt.Image;
 
 import javax.swing.ImageIcon;
-
+/**
+ * Klasa sluzi za vrsenje sistemske operacije
+ * @author Ivan Stanimirovic
+ *
+ */
 public class SODodajMaluSliku {
-	
+	/**
+	 * Metoda vratiSLiku sluzi da bi se vratila odredjena slika na osnovu ulaznog parametra
+	 * @param naziv predstavlja trenutno stanje neba
+	 * @return instancu klase ImageIcon koja predstavlja sliku neba
+	 */
 	public ImageIcon vratiSliku(String naziv){	
 		ImageIcon icon = null;
 		Image image;

@@ -7,11 +7,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import rs.ac.bg.fon.ai.projekat.domen.Dan;
-
+/**
+ * Klasa sluzi za vrsenje sistemske operacije
+ * @author Ivan Stanimirovic
+ *
+ */
 public class SOIzdvojiTrenutno {
-	
-	public Dan izdvojiTrenutnu(JSONObject json){
-		
+	/**
+	 * Metoda izdvojiTrenutnu iz JSON objekta izdvaja trenutnu prognozu i vraca je kao instancu klase Dan
+	 * @param json predtavlja ucitanu prognozu u vidu JSON objekta
+	 * @return vraca instancu klase Dan sa trenutnom prognozom
+	 */
+	public Dan izdvojiTrenutnu(JSONObject json){		
 		JSONObject current = json.getJSONObject("current");
 		long time = current.getLong("dt") * 1000;
 		double temp = current.getDouble("temp");

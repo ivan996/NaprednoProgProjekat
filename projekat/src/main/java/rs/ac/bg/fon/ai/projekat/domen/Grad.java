@@ -1,5 +1,10 @@
 package rs.ac.bg.fon.ai.projekat.domen;
 
+/**
+ *  Domenska klasa u kojoj se cuvaju podaci o gradu
+ * @author Ivan Stanimirovic
+ *
+ */
 public class Grad {
 
 	private String nazivGrada;
@@ -17,27 +22,68 @@ public class Grad {
 		lon = 0;
 		lat = 0;
 	}
+	/**
+	 * Metoda getNazivGrada vraca vrednost atributa nazivGrada
+	 * @return vrednost atributa nazivGrada
+	 */
 	public String getNazivGrada() {
 		return nazivGrada;
 	}
+	/**
+	 * Metoda setNazivGrada postavlja vrednost atributa nazivGradna na novu (proslednjenu) vrednost
+	 * @param nazivGrada predstavlja novu vrednost atributa nazivGrada koji ne sme da bude: 
+	 * <ul>
+	 * <li>null</li>
+	 * <li>prazan string</li>
+	 * </ul>
+	 * @throws Exception ukoliko nisu ispostovani odgovarajuci uslovi baca se izuzetak
+	 */
 	public void setNazivGrada(String nazivGrada) throws Exception {
 		if(nazivGrada == null || nazivGrada == "") throw new Exception("Grad mora da postoji");
 		this.nazivGrada = nazivGrada;
 	}
+	/**
+	 * Metoda getLon vradja vrednost para lon koji predstavlja longitude
+	 * @return vrednost parametra lon
+	 */
 	public double getLon() {
 		return lon;
 	}
+	/**
+	 * Metoda setLon postavlja vrednost parametra lon na novu (proslednjenu) vrednost
+	 * @param lon predstavlja novu vrednost atributa lon koji ne sme da bude: 
+	 * <ul>
+	 * <li>vece od 180 stepeni</li>
+	 * <li>manja od -180 stepeni</li>
+	 * </ul>
+	 * @throws Exception ukoliko nisu ispostovani odgovarajuci uslovi baca se izuzetak
+	 */
 	public void setLon(double lon) throws Exception {
 		if(lon> 180 || lon < (-180)) throw new Exception("Los Lon");
 		this.lon = lon;
 	}
+	/**
+	 * Metoda getLat vradja vrednost para lat koji predstavlja latitude
+	 * @return vrednost parametra lat
+
+	 */
 	public double getLat() {
 		return lat;
 	}
+	/**
+	 * Metoda setLat postavlja vrednost parametra lat na novu (proslednjenu) vrednost
+	 * @param lon predstavlja novu vrednost atributa lat koji ne sme da bude: 
+	 * <ul>
+	 * <li>vece od 90 stepeni</li>
+	 * <li>manja od -90 stepeni</li>
+	 * </ul>
+	 * @throws Exception ukoliko nisu ispostovani odgovarajuci uslovi baca se izuzetak
+	 */
 	public void setLat(double lat) throws Exception {
 		if(lat> 90 || lat < (-90)) throw new Exception("Los Lat");
 		this.lat = lat;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
